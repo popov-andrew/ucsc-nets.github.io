@@ -147,7 +147,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 {/* LEFT COLUMN: Form */}
                 <div className="flex-1 w-full flex flex-col">
                     <div className="mb-6">
-                        <h2 className="text-3xl font-black text-white tracking-tight">Book a Lesson</h2>
+                        <h2 className="text-3xl font-black text-white tracking-tight">Request a Lesson</h2>
                     </div>
 
                     <form onSubmit={handleSubmit} className="flex flex-col gap-5 grow">
@@ -169,7 +169,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-semibold text-white/80 mb-1.5 ml-1">Email Address <span className="text-white/50 font-normal">(if no Instagram)</span></label>
+                            <label className="block text-sm font-semibold text-white/80 mb-1.5 ml-1">Email Address <span className="text-white/50 font-normal">(Instagram Alternative)</span></label>
                             <input type="email" placeholder="hello@example.com" className={inputBaseClasses} value={email} onChange={(e) => setEmail(e.target.value)} />
                         </div>
 
@@ -204,7 +204,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
                         <div className="mt-auto pt-4">
                             <button type="submit" disabled={!isFormValid() || isSubmitting} className="w-full bg-indigo-600 hover:bg-indigo-500 disabled:bg-white/10 disabled:text-white/30 text-white font-bold py-3.5 px-6 rounded-xl transition-all duration-200 shadow-lg cursor-pointer disabled:cursor-not-allowed">
-                                {isSubmitting ? 'Securing Booking...' : status === 'success' ? 'Confirmed!' : 'Confirm Booking'}
+                                {isSubmitting ? 'Securing Booking...' : status === 'success' ? 'Request Confirmed!' : 'Request Lesson'}
                             </button>
                             {status === 'error' && <p className="text-red-400 text-sm mt-2 text-center">{errorMessage}</p>}
                         </div>
@@ -215,9 +215,9 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 <div className="flex-1 w-full bg-white rounded-2xl p-6 hidden flex-col justify-center relative overflow-hidden lg:flex">
                     <div className="absolute top-0 left-0 w-full h-full bg-gray-50 z-0"></div>
                     <div className="relative z-10 w-full">
-                        <h3 className="text-gray-400 text-sm font-bold uppercase tracking-widest mb-4 text-center">Anyone will be able to join your lesson</h3>
                         <div className="pointer-events-none">
                             <LessonElement item={previewItem} columnMapping={['typeKey', 'contactKey', 'dateKey', 'timeKey']} />
+                            <h3 className="text-gray-400 text-sm font-bold uppercase tracking-widest mt-4 text-center">We will try our best to accommodate your availability</h3>
                         </div>
                     </div>
                 </div>

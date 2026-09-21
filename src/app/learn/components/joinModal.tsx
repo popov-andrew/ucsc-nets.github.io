@@ -174,9 +174,15 @@ export default function JoinModal({ isOpen, onClose, lessons, columnMapping, ini
                             </div>
                         </div>
 
-                        <div className="block lg:hidden mt-2 mb-2 p-4 bg-white border border-white/10 rounded-2xl">
-                            <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-3 text-center">Selected Lesson Details</p>
-                            {PreviewCard}
+                        <div className="relative lg:hidden rounded-2xl flex items-center justify-center">
+                            <div className="absolute inset-0 w-full h-full bg-[url('/treenet-background-low.webp')] bg-cover bg-center rounded-2xl blur-xs">
+
+                            </div>
+                            <div className='relative w-full h-full px-4 py-6'>
+                                <p className="text-md font-bold text-zinc-950 uppercase tracking-widest text-center pb-2">Selected Lesson</p>
+                                {PreviewCard}
+                                <p className="text-xs font-bold text-zinc-950 uppercase tracking-widest mt-2 text-center">You will be notified in advance by your instructor</p>
+                            </div>
                         </div>
 
                         <div className="flex justify-center mt-2">
@@ -192,11 +198,14 @@ export default function JoinModal({ isOpen, onClose, lessons, columnMapping, ini
                     </form>
                 </div>
 
-                <div className="flex-1 w-full bg-white rounded-2xl p-6 hidden flex-col justify-center relative overflow-hidden lg:flex">
-                    <div className="absolute top-0 left-0 w-full h-full bg-gray-50 z-0"></div>
+                <div className="flex-1 w-full rounded-2xl p-6 hidden flex-col justify-center relative overflow-hidden lg:flex">
+                    <div className="absolute inset-0 w-full h-full bg-[url('/treenet-background-low.webp')] bg-blend-lighten bg-white/10 bg-cover bg-center rounded-2xl blur-xs">
+
+                    </div>
                     <div className="relative z-10 w-full">
-                        <h3 className="text-gray-400 text-sm font-bold uppercase tracking-widest mb-4 text-center">Selected Lesson Details</h3>
+                        <h3 className="text-zinc-950 text-xl font-bold uppercase tracking-widest mb-4 text-center">Selected Lesson</h3>
                         {PreviewCard}
+                        <h3 className="text-xs font-bold text-zinc-950 uppercase tracking-widest mt-2 text-center">You will be notified in advance by your instructor</h3>
                     </div>
                 </div>
 

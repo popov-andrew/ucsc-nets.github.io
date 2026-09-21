@@ -26,7 +26,7 @@ const parseTSV = (tsvText: string, columnMapping: string[]): LessonItem[] => {
 };
 
 const LoadingSkeleton = () => (
-  <div className="relative flex flex-col p-6 bg-black/50 border border-white/10 rounded-2xl shadow-sm animate-pulse min-h-50">
+  <div className="relative flex flex-col p-6 bg-white/50 border border-white/10 rounded-2xl shadow-sm animate-pulse min-h-50">
     <div className="flex justify-between mb-4">
       <div className="h-8 w-1/2 bg-gray-200 rounded-md"></div>
       <div className="h-6 w-1/4 bg-gray-200 rounded-lg"></div>

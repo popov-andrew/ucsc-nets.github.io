@@ -10,6 +10,10 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-slug: #f8dd99;
+  --color-blu: #6d89c2;
+
+  --font-qwitcher-grypen: var(--font-qwitcher-grypen);
 }
 
 body {
