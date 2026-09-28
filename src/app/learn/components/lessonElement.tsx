@@ -69,7 +69,7 @@ export default function LessonElement({ item, columnMapping, onJoinClick }: Less
         
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4">
             <div>
-                <h3 className="text-2xl font-semibold text-zinc-950 leading-tight tracking-tight">
+                <h3 className="text-2xl font-koh-santepheap font-semibold text-zinc-950 leading-tight tracking-tight">
                     {lessonDetails.name}
                 </h3>
             </div>
@@ -87,7 +87,7 @@ export default function LessonElement({ item, columnMapping, onJoinClick }: Less
                         <br className="hidden lg:block xl:hidden"/> &nbsp;{instaHandle}
                     </a>
                 ) : (
-                    <>Instructor: &nbsp; ${instaHandle}</>
+                    <>Instructor: &nbsp; {instaHandle}</>
                 )}
             </span>
         </div>

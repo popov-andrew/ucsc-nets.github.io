@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Turnstile, TurnstileInstance } from "@marsidev/react-turnstile";
 import LessonElement, { LessonItem } from './lessonElement';
+import ShaderBackground from '@/app/components/shaderBackground';
 
 interface BookingModalProps {
     isOpen: boolean;
@@ -29,11 +30,31 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
     const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
+    const watercolorUniforms = {
+        u_complexity: 3.7,
+        u_saturation: 1.2,
+        u_twist: 1.0,
+        u_light: 1.0,
+        u_mix: 1.8,
+        u_red: 0.09,
+        u_green: 0.16,
+        u_blue: 0.99,
+    };
+
     // Lock scrolling when modal is open
     useEffect(() => {
-        if (isOpen) document.body.style.overflow = 'hidden';
-        else document.body.style.overflow = '';
-        return () => { document.body.style.overflow = ''; };
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+            window.dispatchEvent(new Event('modalOpen'));
+        } else {
+            document.body.style.overflow = '';
+            window.dispatchEvent(new Event('modalClose'));
+        }
+
+        return () => {
+            document.body.style.overflow = '';
+            window.dispatchEvent(new Event('modalClose'));
+        };
     }, [isOpen]);
 
     if (!isOpen) return null;
@@ -147,13 +168,13 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 {/* LEFT COLUMN: Form */}
                 <div className="flex-1 w-full flex flex-col">
                     <div className="mb-6">
-                        <h2 className="text-3xl font-black text-white tracking-tight">Request a Lesson</h2>
+                        <h2 className="text-3xl font-koh-santepheap font-black text-white tracking-tight">Request a Lesson</h2>
                     </div>
 
                     <form onSubmit={handleSubmit} className="flex flex-col gap-5 grow">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                             <div>
-                                <label className="block text-sm font-semibold text-white/80 mb-1.5 ml-1">Lesson Type</label>
+                                <label className="block font-koh-santepheap text-sm font-semibold text-white/80 mb-1.5 ml-1">Lesson Type</label>
                                 <select className={`${inputBaseClasses} appearance-none cursor-pointer`} value={type} onChange={(e) => setType(e.target.value)}>
                                     <option value="Intro" className="bg-gray-900">Intro to Weaving</option>
                                     <option value="Intermediate" className="bg-gray-900">Intermediate Knots</option>
@@ -163,31 +184,48 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                                 </select>
                             </div>
                             <div>
-                                <label className="block text-sm font-semibold text-white/80 mb-1.5 ml-1">Instagram Handle</label>
+                                <label className="block font-koh-santepheap text-sm font-semibold text-white/80 mb-1.5 ml-1">Instagram Handle</label>
                                 <input type="text" placeholder="@yourhandle" className={inputBaseClasses} value={instagram} onChange={(e) => setInstagram(e.target.value)} />
                             </div>
                         </div>
 
                         <div>
-                            <label className="block text-sm font-semibold text-white/80 mb-1.5 ml-1">Email Address <span className="text-white/50 font-normal">(Instagram Alternative)</span></label>
+                            <label className="block text-sm font-koh-santepheap font-semibold text-white/80 mb-1.5 ml-1">Email Address <span className="text-white/50 font-normal">(Instagram Alternative)</span></label>
                             <input type="email" placeholder="hello@example.com" className={inputBaseClasses} value={email} onChange={(e) => setEmail(e.target.value)} />
                         </div>
 
                         {isEmailUsed && (
                             <div className="animate-in slide-in-from-top-2 fade-in duration-300">
-                                <label className="block text-sm font-semibold text-white/80 mb-1.5 ml-1">Full Name <span className="text-red-400">*</span></label>
+                                <label className="block font-koh-santepheap text-sm font-semibold text-white/80 mb-1.5 ml-1">Full Name <span className="text-red-400">*</span></label>
                                 <input type="text" placeholder="Required for email bookings" required={isEmailUsed} className={`${inputBaseClasses} border-indigo-400/50 bg-indigo-500/10`} value={name} onChange={(e) => setName(e.target.value)} />
                             </div>
                         )}
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                             <div>
-                                <label className="block text-sm font-semibold text-white/80 mb-1.5 ml-1">Date</label>
+                                <label className="block text-sm font-koh-santepheap font-semibold text-white/80 mb-1.5 ml-1">Date</label>
                                 <input type="date" className={`color-scheme-dark ${inputBaseClasses}`} style={{ colorScheme: 'dark' }} value={date} onChange={(e) => setDate(e.target.value)} required />
                             </div>
                             <div>
-                                <label className="block text-sm font-semibold text-white/80 mb-1.5 ml-1">Start Time</label>
+                                <label className="block text-sm font-koh-santepheap font-semibold text-white/80 mb-1.5 ml-1">Start Time</label>
                                 <input type="time" className={`color-scheme-dark ${inputBaseClasses}`} style={{ colorScheme: 'dark' }} value={time} onChange={(e) => setTime(e.target.value)} required />
+                            </div>
+                        </div>
+
+
+                        <div className="flex-1 w-full rounded-2xl p-6 flex flex-row justify-center relative overflow-hidden lg:hidden">
+                            <div className="absolute inset-0 w-full h-full bg-white/10 rounded-2xl blur-xs">
+                                <ShaderBackground
+                                    shaderName="watercolor"
+                                    uniforms={watercolorUniforms}
+                                />
+                            </div>
+
+                            <div className="relative z-10 w-full">
+                                <div className="pointer-events-none">
+                                    <LessonElement item={previewItem} columnMapping={['typeKey', 'contactKey', 'dateKey', 'timeKey']} />
+                                    <h3 className="text-zinc-950 text-sm font-bold uppercase tracking-widest mt-4 text-center">We will try our best to accommodate your availability</h3>
+                                </div>
                             </div>
                         </div>
 
@@ -202,9 +240,26 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                             />
                         </div>
 
-                        <div className="mt-auto pt-4">
-                            <button type="submit" disabled={!isFormValid() || isSubmitting} className="w-full bg-indigo-600 hover:bg-indigo-500 disabled:bg-white/10 disabled:text-white/30 text-white font-bold py-3.5 px-6 rounded-xl transition-all duration-200 shadow-lg cursor-pointer disabled:cursor-not-allowed">
-                                {isSubmitting ? 'Securing Booking...' : status === 'success' ? 'Request Confirmed!' : 'Request Lesson'}
+                        <div className="mt-auto pt-4 font-koh-santepheap">
+                            <button
+                                type="submit"
+                                disabled={!isFormValid() || isSubmitting}
+                                className="relative w-full bg-indigo-600 hover:bg-indigo-500 disabled:bg-white/10 disabled:text-white/30 text-white font-bold py-3.5 px-6 rounded-xl transition-all duration-200 shadow-lg cursor-pointer disabled:cursor-not-allowed overflow-hidden"
+                            >
+                                {/* Text layered on top */}
+                                <span className="relative z-20">
+                                    {isSubmitting ? 'Securing Booking...' : status === 'success' ? 'Request Confirmed!' : 'Request Lesson'}
+                                </span>
+
+                                {/* Absolute background layer */}
+                                <div className="absolute inset-0 w-full h-full bg-white/10 rounded-xl blur-xs z-10 pointer-events-none">
+                                    {(isFormValid() || isSubmitting) && (
+                                        <ShaderBackground
+                                            shaderName="watercolor"
+                                            uniforms={watercolorUniforms}
+                                        />
+                                    )}
+                                </div>
                             </button>
                             {status === 'error' && <p className="text-red-400 text-sm mt-2 text-center">{errorMessage}</p>}
                         </div>
@@ -212,12 +267,18 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 </div>
 
                 {/* RIGHT COLUMN: Preview */}
-                <div className="flex-1 w-full bg-white rounded-2xl p-6 hidden flex-col justify-center relative overflow-hidden lg:flex">
-                    <div className="absolute top-0 left-0 w-full h-full bg-gray-50 z-0"></div>
+                <div className="flex-1 w-full rounded-2xl p-6 hidden flex-col justify-center relative overflow-hidden lg:flex">
+                    <div className="absolute inset-0 w-full h-full bg-white/10 rounded-2xl blur-xs">
+                        <ShaderBackground
+                            shaderName="watercolor"
+                            uniforms={watercolorUniforms}
+                        />
+                    </div>
+
                     <div className="relative z-10 w-full">
                         <div className="pointer-events-none">
                             <LessonElement item={previewItem} columnMapping={['typeKey', 'contactKey', 'dateKey', 'timeKey']} />
-                            <h3 className="text-gray-400 text-sm font-bold uppercase tracking-widest mt-4 text-center">We will try our best to accommodate your availability</h3>
+                            <h3 className="text-zinc-950 font-koh-santepheap text-sm font-bold uppercase tracking-widest mt-4 text-center">We will try our best to accommodate your availability</h3>
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Navigation from "./components/navigation";
 import "./globals.css"
 import Image from "next/image";
-import { Qwitcher_Grypen  } from 'next/font/google'
+import { Qwitcher_Grypen, Hurricane, Koh_Santepheap, Livvic } from 'next/font/google'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +15,26 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const livvic = Livvic({
+  variable: "--font-livvic",
+  subsets: ["latin"],
+  weight: "400"
+});
+
+const kohSantepheap = Koh_Santepheap({
+  variable: "--font-koh-santepheap",
+  subsets: ["latin"],
+  weight: "400"
+});
+
 const qwitcherGrypen = Qwitcher_Grypen({
   variable: "--font-qwitcher-grypen",
+  subsets: ["latin"],
+  weight: "400"
+});
+
+const hurricane = Hurricane({
+  variable: "--font-hurricane",
   subsets: ["latin"],
   weight: "400"
 });
@@ -34,10 +52,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${qwitcherGrypen.variable} h-full antialiased`}
+      className={`${livvic.variable} ${qwitcherGrypen.variable} ${hurricane.variable} ${kohSantepheap.variable} h-full antialiased`}
     >
       <body>
-        <main className="relative min-h-full flex flex-col">
+        <main className="relative min-h-full font-livvic flex flex-col">
 
           <Navigation />
           {children}

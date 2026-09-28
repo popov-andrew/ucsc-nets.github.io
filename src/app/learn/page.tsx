@@ -25,11 +25,9 @@ const parseTSV = (tsvText: string, columnMapping: string[]): LessonItem[] => {
 export default function LearnPage() {
 
     const galleryImages = [
-        "big-treenet.webp",
-        "high-treenet.webp",
-        "treenet-floor.webp",
         "treenet-weaving.webp",
-        "weaving-treenet-shadow.webp"
+        "weaving-lesson.webp",
+        "community-weaving.webp"
     ]
 
     const [imgSrc, setImgSrc] = useState('/treenet-background-low.webp');
@@ -88,7 +86,7 @@ export default function LearnPage() {
             <main className="flex flex-col w-full lg:h-[calc(100vh-8.9rem)] z-20 mt-auto lg:my-12 items-center">
                 <div className="m-8 flex flex-col lg:flex-row bg-white/60 backdrop-blur-md rounded-xl text-xl max-w-357">
                     <div className="flex flex-col gap-8 p-8 h-full lg:max-w-90 xl:max-w-2/5 shrink-0 text-zinc-900">
-                        <h1 className="text-2xl lg:text-4xl font-medium">
+                        <h1 className="font-koh-santepheap text-2xl lg:text-4xl font-medium">
                             Learn how to weave treenets
                         </h1>
                         <p>
@@ -97,7 +95,7 @@ export default function LearnPage() {
                         <p className="lg:mt-auto text-md lg:text-lg">
                             Join an existing lesson or request a time that works for you.
                         </p>
-                        <div className="flex flex-row justify-center gap-8 text-xl lg:text-xl xl:text-2xl">
+                        <div className="flex flex-row justify-center gap-8 font-koh-santepheap text-xl lg:text-xl xl:text-2xl">
                             <button
                                 onClick={() => setIsJoinModalOpen(true)}
                                 className="flex flex-row gap-1 bg-zinc-950 hover:bg-zinc-950/80 transition-colors duration-300 text-zinc-50 w-fit p-2 xl:p-3 pr-0.5 rounded-xl">

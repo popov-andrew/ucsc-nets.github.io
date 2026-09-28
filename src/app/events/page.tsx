@@ -75,11 +75,9 @@ export default function eventsPage() {
 
 
     const galleryImages = [
-        "big-treenet.webp",
-        "high-treenet.webp",
-        "treenet-floor.webp",
         "treenet-weaving.webp",
-        "weaving-treenet-shadow.webp"
+        "weaving-lesson.webp",
+        "community-weaving.webp"
     ]
 
     useEffect(() => {
@@ -121,7 +119,7 @@ export default function eventsPage() {
                     <div className="flex flex-col col-span-1 md:col-span-1 lg:col-span-5 mr-0 lg:mr-8">
                         <div className="flex flex-col lg:flex-row h-2/3 lg:h-5/7 mb-8 bg-white/60 backdrop-blur-sm rounded-lg">
                             <div className="flex lg:max-w-1/2 xl:max-w-1/3 flex-col gap-8 lg:mb-0 p-8 text-zinc-900">
-                                <h1 className="text-4xl font-medium">Events at the Treenets</h1>
+                                <h1 className="text-4xl font-koh-santepheap font-medium">Events at the Treenets</h1>
                                 <p className="text-lg hidden lg:block">
                                     Experience the treenets of Santa Cruz while exploring coastal redwood forests. Poise through a canopy of unique species, endemic to the Zayante soils of the Santa Cruz Mountains. Find equanimity through elevation; replenish your soul.
                                 </p>
@@ -135,7 +133,7 @@ export default function eventsPage() {
                         </div>
                         <div className="lg:h-1/3 flex flex-col lg:flex-row w-full p-4 gap-4 mb-8 lg:mb-0 rounded-lg bg-white/60 backdrop-blur-sm text-zinc-950">
                             <div className="flex flex-col gap-2 lg:mt-4 m-4 justify-center text-center">
-                                <h2 className="text-4xl lg:text-2xl font-medium">
+                                <h2 className="text-4xl font-koh-santepheap lg:text-2xl font-medium">
                                     TOURS & EVENTS
                                 </h2>
                                 <h3 className="text-5xl lg:text-4xl font-qwitcher-grypen font-semibold">
@@ -174,7 +172,7 @@ export default function eventsPage() {
                                             </div>
                                         )}
 
-                                        <Link href="#events" className={`w-full lg:w-30 h-full bg-white/60 font-medium hover:brightness-115 transition-all duration-300 rounded-lg text-center flex-col text-xl justify-center items-center align-center ${buttonVisibilityClasses}`}>
+                                        <Link href="#events" className={`font-koh-santepheap w-full lg:w-30 h-full bg-white/60 font-medium hover:brightness-115 transition-all duration-300 rounded-lg text-center flex-col text-xl justify-center items-center align-center ${buttonVisibilityClasses}`}>
                                             View All Events
                                             <svg
                                                 xmlns="http://w3.org"

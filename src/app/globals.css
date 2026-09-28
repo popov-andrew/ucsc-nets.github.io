@@ -13,7 +13,10 @@
   --color-slug: #f8dd99;
   --color-blu: #6d89c2;
 
+  --font-livvic: var(--font-livvic);
   --font-qwitcher-grypen: var(--font-qwitcher-grypen);
+  --font-hurricane: var(--font-hurricane);
+  --font-koh-santepheap: var(--font-koh-santepheap);
 }
 
 body {

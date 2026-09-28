@@ -1,10 +1,13 @@
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export default function RentPromoPage() {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isPlaying, setIsPlaying] = useState(true);
     const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+    const pathname = usePathname();
 
     useEffect(() => {
         const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -70,15 +73,21 @@ export default function RentPromoPage() {
                         </svg>
                     )}
                 </button>
-                <Link href="/contact" className="absolute inset-0 flex flex-row gap-1 bg-white/75 hover:bg-white backdrop-blur-sm transition-colors duration-300 w-fit h-fit p-2 pl-3 pr-0.5 rounded-xl mt-auto mr-auto m-4">
-                    Rent a Net
-                    <svg className="w-5 h-6.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 8l4 4m0 0l-4 4m4-4H3"></path>
-                    </svg>
-                </Link>
+                {pathname === '/contact' ? (
+                    <div className="absolute font-koh-santepheap inset-0 flex flex-row gap-1 bg-white/75 backdrop-blur-sm w-fit h-fit p-2 px-3 rounded-xl mt-auto mr-auto m-4">
+                        Contact Us
+                    </div>
+                ) : (
+                    <Link href="/contact" className="absolute font-koh-santepheap inset-0 flex flex-row gap-1 bg-white/75 hover:bg-white backdrop-blur-sm transition-colors duration-300 w-fit h-fit p-2 pl-3 pr-0.5 rounded-xl mt-auto mr-auto m-4">
+                        Rent a Net
+                        <svg className="w-5 h-6.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </Link>
+                )}
             </div>
             <div className="absolute w-full rounded-lg bg-white/75 backdrop-blur-sm max-w-[calc(100%-2rem)] m-4 mb-18 p-4 gap-1 flex flex-col">
-                <h2 className="text-2xl font-medium">
+                <h2 className="text-2xl font-koh-santepheap font-medium">
                     Event Installations
                 </h2>
                 <p className="text-md">

@@ -6,10 +6,14 @@ import Gallery from "./components/gallery";
 import { useEffect, useState } from "react";
 
 const galleryImages = [
-    "big-treenet.webp",
+    "community-weaving.webp",
+    "baskin-treenet.webp",
+    "relax-refresh-rejuvenate.webp",
+    "treenet-weaving.webp",
     "high-treenet.webp",
     "treenet-floor.webp",
-    "treenet-weaving.webp",
+    "big-treenet.webp",
+    "weaving-lesson.webp",
     "weaving-treenet-shadow.webp"
 ]
 
@@ -56,16 +60,16 @@ export default function Test() {
             <main className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-7 h-screen lg:h-[calc(100vh-8.9rem)] w-full z-20 mb-12">
                 <div className="hidden lg:flex col-span-1 md:col-span-1 lg:col-span-2 p-8">
                     <div className="bg-white/60 backdrop-blur-xs w-full h-full rounded-lg p-8 border border-t-white/80 border-l-white/80 border-b-black/20 border-r-black/20">
-                        <div className="flex flex-col h-full gap-8">
+                        <div className="flex flex-col font-koh-santepheap h-full gap-8">
                             <Link href="/learn" className="relative w-full h-full rounded-lg overflow-hidden group">
                                 <Image
-                                    src="/images/treenet-weaving.webp"
+                                    src="/images/weaving-lesson.webp"
                                     alt="Free Treenet Lesson Promotion"
                                     fill
                                     className="w-auto h-auto object-cover group-hover:scale-110 transform ease-in-out transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                                    <span className="text-white text-2xl font-bold tracking-wide drop-shadow-md">
+                                    <span className="text-white text-2xl 2xl:text-4xl font-bold tracking-wide drop-shadow-md">
                                         Lessons
                                     </span>
                                 </div>
@@ -78,7 +82,7 @@ export default function Test() {
                                     className="w-auto h-auto object-cover group-hover:scale-110 transform ease-in-out transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                                    <span className="text-white text-2xl font-bold tracking-wide drop-shadow-md">
+                                    <span className="text-white text-2xl 2xl:text-4xl font-bold tracking-wide drop-shadow-md">
                                         Events
                                     </span>
                                 </div>
@@ -91,7 +95,7 @@ export default function Test() {
                                     className="w-auto h-auto object-cover group-hover:scale-110 transform ease-in-out transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                                    <span className="text-white text-2xl font-bold tracking-wide drop-shadow-md">
+                                    <span className="text-white text-2xl 2xl:text-4xl font-bold tracking-wide drop-shadow-md">
                                         Contact
                                     </span>
                                 </div>
@@ -102,10 +106,10 @@ export default function Test() {
 
                 <div className="col-span-1 md:col-span-1 lg:col-span-5 m-4 sm:m-8 pb-8 lg:ml-0 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-7 xl:grid-cols-7  bg-white/60 backdrop-blur-sm rounded-lg ">
                     <div className="col-span-1 md:col-span-1 lg:col-span-4 xl:col-span-3 text-zinc-900 p-8 flex flex-col ">
-                        <h1 className="text-4xl font-medium text-zinc-900">
+                        <h1 className="text-4xl font-medium font-koh-santepheap text-zinc-900">
                             Weaving in the Birthplace of Treenets
                         </h1>
-                        <p className="text-lg mt-2">
+                        <p className="text-lg mt-2 lg:mt-8">
                             We are a guild of students and locals weaving treenets to restore their historical significance to Santa Cruz.
                             We want to share our insights by teaching anyone interested, and weave huge treenets with everyone who wants to get involved!
                         </p>
@@ -117,7 +121,7 @@ export default function Test() {
                                 Find free in-person lessons
                             </span>
                             <div className="flex gap-8 flex-row mt-4">
-                                <Link href="/learn" className="flex flex-row gap-1 bg-white/75 hover:bg-white border-white/10 border-2 transition-colors duration-300 text-zinc-800 w-fit p-2 pr-0.5 rounded-xl ml-auto">
+                                <Link href="/learn" className="flex font-koh-santepheap flex-row gap-1 bg-white/75 hover:bg-white border-white/10 border-2 transition-colors duration-300 text-zinc-800 w-fit p-2 pr-0.5 rounded-xl ml-auto">
                                     Lessons
                                     <svg className="w-5 h-6.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 8l4 4m0 0l-4 4m4-4H3"></path>
@@ -164,7 +168,7 @@ export default function Test() {
 
                         <div className="w-full bg-blu border-2 border-blu/20 backdrop-blur-lg text-neutral rounded-lg p-8 mt-0 lg:mt-auto flex flex-col min-[1474px]:flex-row">
                             Want to visit a treenet? Sign up for our next event
-                            <Link href="/events" className="flex flex-row gap-1 bg-white/75 hover:bg-white transition-colors duration-300 text-zinc-800 w-fit p-2 pr-0.5 rounded-xl ml-auto">
+                            <Link href="/events" className="flex font-koh-santepheap flex-row gap-1 bg-white/75 hover:bg-white transition-colors duration-300 text-zinc-800 w-fit p-2 pr-0.5 rounded-xl ml-auto">
                                 Tours
                                 <svg className="w-5 h-6.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 8l4 4m0 0l-4 4m4-4H3"></path>

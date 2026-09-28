@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Turnstile, TurnstileInstance } from "@marsidev/react-turnstile";
 import { EventItem } from './eventElement';
+import ShaderBackground from '@/app/components/shaderBackground';
 
 interface EventJoinModalProps {
     isOpen: boolean;
@@ -25,9 +26,30 @@ export default function EventJoinModal({ isOpen, onClose, event, eventImageUrl }
 
     const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
+    const watercolorUniforms = {
+        u_complexity: 3.7,
+        u_saturation: 1.2,
+        u_twist: 1.0,
+        u_light: 1.0,
+        u_mix: 1.8,
+        u_red: 0.09,
+        u_green: 0.16,
+        u_blue: 0.99,
+    };
+
     useEffect(() => {
-        if (isOpen) document.body.style.overflow = 'hidden';
-        else document.body.style.overflow = '';
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+            window.dispatchEvent(new Event('modalOpen'));
+        } else {
+            document.body.style.overflow = '';
+            window.dispatchEvent(new Event('modalClose'));
+        }
+
+        return () => {
+            document.body.style.overflow = '';
+            window.dispatchEvent(new Event('modalClose'));
+        };
     }, [isOpen]);
 
     if (!isOpen) return null;
@@ -95,7 +117,7 @@ export default function EventJoinModal({ isOpen, onClose, event, eventImageUrl }
     const isInstagram = typeof event.host === 'string' && event.host.startsWith('@');
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/45 backdrop-blur-sm animate-in fade-in duration-200 h-dvh w-screen overflow-y-auto" onClick={onClose}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/45 backdrop-blur-sm  duration-200 h-dvh w-screen overflow-y-auto" onClick={onClose}>
             <button onClick={(e) => { e.stopPropagation(); onClose(); }} className="fixed top-7 right-7 z-60 p-2 rounded-full bg-black/10 text-neutral-50/90 hover:bg-black/70 hover:text-white backdrop-blur-md transition-all hover:scale-105">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
@@ -105,7 +127,7 @@ export default function EventJoinModal({ isOpen, onClose, event, eventImageUrl }
                 {/* Left Column: Form */}
                 <div className="flex-1 w-full flex flex-col">
                     <div className="mb-6">
-                        <h2 className="text-3xl font-black text-white tracking-tight">{event.eventName}</h2>
+                        <h2 className="text-3xl font-koh-santepheap font-black text-white tracking-tight">{event.eventName}</h2>
                         <p className="text-white/70 mt-1 text-sm lg:text-md">
                             {isInstagram ? (
                                 <> Hosted by &nbsp;
@@ -146,13 +168,13 @@ export default function EventJoinModal({ isOpen, onClose, event, eventImageUrl }
 
                     <form onSubmit={handleSubmit} className="flex flex-col gap-5 grow mt-2">
                         <div>
-                            <label className="block text-sm font-semibold text-white/80 mb-1.5 ml-1">Full Name <span className="text-red-400">*</span></label>
+                            <label className="block font-koh-santepheap text-sm font-semibold text-white/80 mb-1.5 ml-1">Full Name <span className="text-red-400">*</span></label>
                             <input type="text" placeholder="Your Name" required className={inputBaseClasses} value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                             <div className="col-span-full">
-                                <label className="block text-sm font-semibold text-white/80 ml-1">Contact Method <span className="text-white/50 font-normal">(Provide at least one)</span></label>
+                                <label className="block font-koh-santepheap text-sm font-semibold text-white/80 ml-1">Contact Method <span className="text-white/50 font-normal">(Provide at least one)</span></label>
                             </div>
                             <div>
                                 <input type="text" placeholder="Instagram (@handle)" className={inputBaseClasses} value={instagram} onChange={(e) => setInstagram(e.target.value)} />
@@ -166,9 +188,26 @@ export default function EventJoinModal({ isOpen, onClose, event, eventImageUrl }
                             {siteKey && <Turnstile siteKey={siteKey} onSuccess={(token) => setTurnstileToken(token)} onExpire={() => setTurnstileToken(null)} ref={turnstileRef} options={{ theme: 'dark' }} />}
                         </div>
 
-                        <div className="mt-auto pt-4">
-                            <button type="submit" disabled={!isFormValid() || isSubmitting} className="w-full bg-indigo-600 hover:bg-indigo-500 disabled:bg-white/10 disabled:text-white/30 text-white font-bold py-3.5 px-6 rounded-xl transition-all duration-200 shadow-lg cursor-pointer disabled:cursor-not-allowed">
-                                {isSubmitting ? 'Securing Spot...' : status === 'success' ? 'Confirmed!' : 'Get Notified'}
+                        <div className="mt-auto pt-4 font-koh-santepheap">
+                            <button
+                                type="submit"
+                                disabled={!isFormValid() || isSubmitting}
+                                className="relative w-full bg-indigo-600 hover:bg-indigo-500 disabled:bg-white/10 disabled:text-white/30 text-zinc-950 font-bold py-3.5 px-6 rounded-xl transition-all duration-200 shadow-lg cursor-pointer disabled:cursor-not-allowed overflow-hidden"
+                            >
+                                {/* 1. Wrap the text in a relative container with a higher z-index */}
+                                <span className="relative z-20">
+                                    {isSubmitting ? 'Securing Spot...' : status === 'success' ? 'Confirmed!' : 'Get Notified'}
+                                </span>
+
+                                {/* 2. Absolute background layer (z-10) */}
+                                <div className="absolute inset-0 w-full h-full bg-white/10 rounded-xl blur-xs z-10">
+                                    {(isFormValid() || isSubmitting) && (
+                                        <ShaderBackground
+                                            shaderName="watercolor"
+                                            uniforms={watercolorUniforms}
+                                        />
+                                    )}
+                                </div>
                             </button>
                             {status === 'error' && <p className="text-red-400 text-sm mt-2 text-center">{errorMessage}</p>}
                         </div>

@@ -29,7 +29,7 @@ export default function EventElement({ item, onJoinClick }: EventElementProps) {
         >
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4">
                 <div>
-                    <h3 className="text-2xl font-semibold text-zinc-950 leading-tight tracking-tight">
+                    <h3 className="text-2xl font-koh-santepheap font-semibold text-zinc-950 leading-tight tracking-tight">
                         {item.eventName}
                     </h3>
                     {item.location && (
