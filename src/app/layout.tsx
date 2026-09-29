@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Navigation from "./components/navigation";
 import "./globals.css"
 import Image from "next/image";
-import { Qwitcher_Grypen, Hurricane, Koh_Santepheap, Livvic } from 'next/font/google'
+import { Qwitcher_Grypen, Hurricane, Koh_Santepheap, Figtree } from 'next/font/google'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const livvic = Livvic({
+const livvic = Figtree({
   variable: "--font-livvic",
   subsets: ["latin"],
   weight: "400"

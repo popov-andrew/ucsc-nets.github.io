@@ -75,9 +75,10 @@ export default function eventsPage() {
 
 
     const galleryImages = [
-        "treenet-weaving.webp",
+        "community-weaving.webp",
+        "weaving-treenet-shadow.webp",
         "weaving-lesson.webp",
-        "community-weaving.webp"
+  
     ]
 
     useEffect(() => {
@@ -172,7 +173,7 @@ export default function eventsPage() {
                                             </div>
                                         )}
 
-                                        <Link href="#events" className={`font-koh-santepheap w-full lg:w-30 h-full bg-white/60 font-medium hover:brightness-115 transition-all duration-300 rounded-lg text-center flex-col text-xl justify-center items-center align-center ${buttonVisibilityClasses}`}>
+                                        <Link href="#events" className={`w-full lg:w-30 h-full bg-white/60 font-medium hover:brightness-115 transition-all duration-300 rounded-lg text-center flex-col text-xl justify-center items-center align-center ${buttonVisibilityClasses}`}>
                                             View All Events
                                             <svg
                                                 xmlns="http://w3.org"

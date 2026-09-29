@@ -50,7 +50,7 @@ export default function RentPromoPage() {
                     loop
                     muted
                     playsInline
-                    poster="/fallback-image.jpg" //TODO
+                    poster="/images/reusable-spacenet-bundle.webp"
                 >
                     <source src="/video/RentPromo.webm" type="video/webm" />
                     <source src="/video/RentPromo.mp4" type="video/mp4" />
@@ -74,11 +74,11 @@ export default function RentPromoPage() {
                     )}
                 </button>
                 {pathname === '/contact' ? (
-                    <div className="absolute font-koh-santepheap inset-0 flex flex-row gap-1 bg-white/75 backdrop-blur-sm w-fit h-fit p-2 px-3 rounded-xl mt-auto mr-auto m-4">
+                    <div className="absolute inset-0 flex flex-row gap-1 bg-white/75 backdrop-blur-sm w-fit h-fit p-2 px-3 rounded-xl mt-auto mr-auto m-4">
                         Contact Us
                     </div>
                 ) : (
-                    <Link href="/contact" className="absolute font-koh-santepheap inset-0 flex flex-row gap-1 bg-white/75 hover:bg-white backdrop-blur-sm transition-colors duration-300 w-fit h-fit p-2 pl-3 pr-0.5 rounded-xl mt-auto mr-auto m-4">
+                    <Link href="/contact" className="absolute font-semibold inset-0 flex flex-row gap-1 bg-white/75 hover:bg-white backdrop-blur-sm transition-colors duration-300 w-fit h-fit p-2 pl-3 pr-0.5 rounded-xl mt-auto mr-auto m-4">
                         Rent a Net
                         <svg className="w-5 h-6.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 8l4 4m0 0l-4 4m4-4H3"></path>

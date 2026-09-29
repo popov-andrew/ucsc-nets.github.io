@@ -89,13 +89,13 @@ export default function LearnPage() {
                         <h1 className="font-koh-santepheap text-2xl lg:text-4xl font-medium">
                             Learn how to weave treenets
                         </h1>
-                        <p>
+                        <p className="text-md lg:text-xl">
                             Take part in hands-on learn experiences. From basic knots to intricate patterns, we have the right lesson for you.
                         </p>
-                        <p className="lg:mt-auto text-md lg:text-lg">
+                        <p className="lg:mt-auto text-sm lg:text-lg">
                             Join an existing lesson or request a time that works for you.
                         </p>
-                        <div className="flex flex-row justify-center gap-8 font-koh-santepheap text-xl lg:text-xl xl:text-2xl">
+                        <div className="flex flex-row justify-center gap-8 font-semibold text-xl lg:text-xl xl:text-2xl">
                             <button
                                 onClick={() => setIsJoinModalOpen(true)}
                                 className="flex flex-row gap-1 bg-zinc-950 hover:bg-zinc-950/80 transition-colors duration-300 text-zinc-50 w-fit p-2 xl:p-3 pr-0.5 rounded-xl">

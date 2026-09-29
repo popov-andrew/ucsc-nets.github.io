@@ -65,7 +65,7 @@ export default function JoinModal({ isOpen, onClose, lessons, columnMapping, ini
 
     if (!siteKey) {
         return (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/45 backdrop-blur-xs">
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/35 backdrop-blur-xs">
                 <p className="text-red-500 bg-white p-4 rounded-xl">System configuration error: Missing security key.</p>
             </div>
         );
@@ -136,7 +136,7 @@ export default function JoinModal({ isOpen, onClose, lessons, columnMapping, ini
         }
     };
 
-    const inputBaseClasses = "w-full bg-white/10 hover:bg-white/15 focus:bg-white/20 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all backdrop-blur-md";
+    const inputBaseClasses = "w-full bg-zinc-950/10 hover:bg-zinc-950/15 focus:bg-zinc-950/20 border border-zinc-950/20 rounded-xl px-4 py-3 bg-zinc-950 placeholder-bg-zinc-950/50 focus:outline-none focus:ring-2 focus:ring-zinc-950/30 transition-all backdrop-blur-md";
 
     const PreviewCard = (
         <div className="pointer-events-none w-full">
@@ -149,23 +149,23 @@ export default function JoinModal({ isOpen, onClose, lessons, columnMapping, ini
     );
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/45 backdrop-blur-sm animate-in fade-in duration-200 h-dvh w-screen overflow-y-auto" onClick={onClose}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/35 backdrop-blur-sm animate-in fade-in duration-200 h-dvh w-screen overflow-y-auto" onClick={onClose}>
             <button onClick={(e) => { e.stopPropagation(); onClose(); }} className="fixed top-7 right-7 z-60 p-2 rounded-full bg-black/10 text-neutral-50/90 hover:bg-black/70 hover:text-white backdrop-blur-md transition-all hover:scale-105">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
 
-            <div className="relative w-full max-w-5xl my-auto bg-black/40 border border-white/20 backdrop-blur-2xl shadow-2xl rounded-3xl p-6 md:p-8 flex flex-col lg:flex-row gap-8 text-neutral-50" onClick={(e) => e.stopPropagation()}>
+            <div className="relative w-full max-w-5xl my-auto bg-white/60 border border-white/20 backdrop-blur-2xl shadow-2xl rounded-3xl p-6 md:p-8 flex flex-col lg:flex-row gap-8 text-zinc-950" onClick={(e) => e.stopPropagation()}>
 
                 <div className="flex-1 w-full flex flex-col">
                     <div className="mb-6">
-                        <h2 className="text-3xl font-koh-santepheap font-black text-white tracking-tight">Join a Lesson</h2>
-                        <p className="text-white/70 mt-1">Select an upcoming lesson to attend.</p>
+                        <h2 className="text-3xl font-koh-santepheap font-black text-zinc-950 tracking-tight">Join a Lesson</h2>
+                        <p className="text-text-zinc-950/70 mt-1">Select an upcoming lesson to attend.</p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="flex flex-col gap-5 grow">
 
                         <div>
-                            <label className="block font-koh-santepheap text-sm font-semibold text-white/80 mb-1.5 ml-1">Select Lesson</label>
+                            <label className="block font-koh-santepheap text-sm font-semibold text-text-zinc-950/80 mb-1.5 ml-1">Select Lesson</label>
                             <select
                                 className={`${inputBaseClasses} appearance-none cursor-pointer`}
                                 value={selectedLessonUid}
@@ -180,13 +180,13 @@ export default function JoinModal({ isOpen, onClose, lessons, columnMapping, ini
                         </div>
 
                         <div>
-                            <label className="block font-koh-santepheap text-sm font-semibold text-white/80 mb-1.5 ml-1">Full Name <span className="text-red-400">*</span></label>
+                            <label className="block font-koh-santepheap text-sm font-semibold text-text-zinc-950/80 mb-1.5 ml-1">Full Name <span className="text-red-400">*</span></label>
                             <input type="text" placeholder="Your Name" required className={inputBaseClasses} value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 border-t border-white/10 pt-5 mt-2">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 border-t border-zinc-950/10 pt-5 mt-2">
                             <div className="col-span-full">
-                                <label className="block font-koh-santepheap text-sm font-semibold text-white/80 ml-1">Contact Method <span className="text-white/50 font-normal">(Provide at least one)</span></label>
+                                <label className="block font-koh-santepheap text-sm font-semibold text-text-zinc-950/80 ml-1">Contact Method <span className="text-text-zinc-700 font-normal">(Provide at least one)</span></label>
                             </div>
                             <div>
                                 <input type="text" placeholder="Instagram (@handle)" className={inputBaseClasses} value={instagram} onChange={(e) => setInstagram(e.target.value)} />
@@ -218,7 +218,7 @@ export default function JoinModal({ isOpen, onClose, lessons, columnMapping, ini
                             <button
                                 type="submit"
                                 disabled={!isFormValid() || isSubmitting}
-                                className="relative w-full bg-indigo-600 hover:bg-indigo-500 disabled:bg-white/10 disabled:text-white/30 text-white font-bold py-3.5 px-6 rounded-xl transition-all duration-200 shadow-lg cursor-pointer disabled:cursor-not-allowed overflow-hidden"
+                                className="relative w-full bg-transparent hover:bg-white disabled:bg-white/10 disabled:text-zinc-950/30 text-zinc-950 disabled:font-bold font-extrabold py-3.5 px-6 rounded-xl transition-all duration-200 shadow-lg cursor-pointer disabled:cursor-not-allowed overflow-hidden"
                             >
                                 {/* Text layered on top */}
                                 <span className="relative z-20">

@@ -40,7 +40,7 @@ export default function Test() {
                     fill
                     priority
                     className={`
-                      object-cover object-center z-0 transition-all duration-700  scale-101
+                      object-cover object-center z-0 transition-all duration-700 scale-101
                       ${isHighResLoaded ? 'blur-0' : 'blur-[2px]'}
                     `}
                     onLoad={() => {
@@ -76,7 +76,7 @@ export default function Test() {
                             </Link>
                             <Link href="/events" className="relative w-full h-full rounded-lg overflow-hidden group">
                                 <Image
-                                    src="https://images.unsplash.com/photo-1542273917363-3b1817f69a56?auto=format&fit=crop&q=80&w=800"
+                                    src="/images/community-weaving.webp"
                                     alt="Event Promotion"
                                     fill
                                     className="w-auto h-auto object-cover group-hover:scale-110 transform ease-in-out transition-transform duration-500"
@@ -89,7 +89,7 @@ export default function Test() {
                             </Link>
                             <Link href="/contact" className="relative w-full h-full rounded-lg overflow-hidden group">
                                 <Image
-                                    src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&q=80&w=800"
+                                    src="/images/secluded-levitation.webp"
                                     alt="Contact"
                                     fill
                                     className="w-auto h-auto object-cover group-hover:scale-110 transform ease-in-out transition-transform duration-500"
@@ -121,7 +121,7 @@ export default function Test() {
                                 Find free in-person lessons
                             </span>
                             <div className="flex gap-8 flex-row mt-4">
-                                <Link href="/learn" className="flex font-koh-santepheap flex-row gap-1 bg-white/75 hover:bg-white border-white/10 border-2 transition-colors duration-300 text-zinc-800 w-fit p-2 pr-0.5 rounded-xl ml-auto">
+                                <Link href="/learn" className="flex font-medium flex-row gap-1 bg-white/75 hover:bg-white border-white/10 border-2 transition-colors duration-300 text-zinc-800 w-fit p-2 pr-0.5 rounded-xl ml-auto">
                                     Lessons
                                     <svg className="w-5 h-6.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 8l4 4m0 0l-4 4m4-4H3"></path>
@@ -168,7 +168,7 @@ export default function Test() {
 
                         <div className="w-full bg-blu border-2 border-blu/20 backdrop-blur-lg text-neutral rounded-lg p-8 mt-0 lg:mt-auto flex flex-col min-[1474px]:flex-row">
                             Want to visit a treenet? Sign up for our next event
-                            <Link href="/events" className="flex font-koh-santepheap flex-row gap-1 bg-white/75 hover:bg-white transition-colors duration-300 text-zinc-800 w-fit p-2 pr-0.5 rounded-xl ml-auto">
+                            <Link href="/events" className="flex flex-row gap-1 bg-white/75 hover:bg-white transition-colors duration-300 text-zinc-800 font-medium w-fit p-2 pr-0.5 rounded-xl ml-auto">
                                 Tours
                                 <svg className="w-5 h-6.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 8l4 4m0 0l-4 4m4-4H3"></path>

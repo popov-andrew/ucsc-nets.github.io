@@ -113,29 +113,29 @@ export default function EventJoinModal({ isOpen, onClose, event, eventImageUrl }
         }
     };
 
-    const inputBaseClasses = "w-full bg-white/10 hover:bg-white/15 focus:bg-white/20 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all backdrop-blur-md";
+    const inputBaseClasses = "w-full bg-zinc-950/10 hover:bg-zinc-950/15 focus:bg-zinc-950/20 border border-zinc-950/20 rounded-xl px-4 py-3 bg-zinc-950 placeholder-bg-zinc-950/50 focus:outline-none focus:ring-2 focus:ring-zinc-950/30 transition-all backdrop-blur-md";
     const isInstagram = typeof event.host === 'string' && event.host.startsWith('@');
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/45 backdrop-blur-sm  duration-200 h-dvh w-screen overflow-y-auto" onClick={onClose}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/35 backdrop-blur-sm  duration-200 h-dvh w-screen overflow-y-auto" onClick={onClose}>
             <button onClick={(e) => { e.stopPropagation(); onClose(); }} className="fixed top-7 right-7 z-60 p-2 rounded-full bg-black/10 text-neutral-50/90 hover:bg-black/70 hover:text-white backdrop-blur-md transition-all hover:scale-105">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
 
-            <div className="relative w-full max-w-5xl my-auto bg-black/40 border border-white/20 backdrop-blur-2xl shadow-2xl rounded-3xl p-6 md:p-8 flex flex-col lg:flex-row gap-8 text-neutral-50" onClick={(e) => e.stopPropagation()}>
+            <div className="relative w-full max-w-5xl my-auto bg-white/60 border border-white/20 backdrop-blur-2xl shadow-2xl rounded-3xl p-6 md:p-8 flex flex-col lg:flex-row gap-8 text-zinc-950" onClick={(e) => e.stopPropagation()}>
 
                 {/* Left Column: Form */}
                 <div className="flex-1 w-full flex flex-col">
                     <div className="mb-6">
-                        <h2 className="text-3xl font-koh-santepheap font-black text-white tracking-tight">{event.eventName}</h2>
-                        <p className="text-white/70 mt-1 text-sm lg:text-md">
+                        <h2 className="text-3xl font-koh-santepheap font-black text-zinc-950 tracking-tight">{event.eventName}</h2>
+                        <p className="text-text-zinc-950/70 mt-1 text-sm lg:text-md">
                             {isInstagram ? (
                                 <> Hosted by &nbsp;
                                     <a
                                         href={`https://www.instagram.com/${event.host.slice(1)}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="hover:text-white transition-all cursor-pointer"
+                                        className="hover:text-zinc-600 transition-all cursor-pointer"
                                         onClick={(e) => e.stopPropagation()}
                                     >
                                         <br className="hidden lg:block xl:hidden" />{event.host}
@@ -150,15 +150,15 @@ export default function EventJoinModal({ isOpen, onClose, event, eventImageUrl }
                             {event.description}
                         </div>
 
-                        <div className="flex flex-row gap-6 pt-4 pb-2 border-b border-white/10">
-                            <div className="flex items-center text-sm font-medium text-white/90">
-                                <svg className="w-4 h-4 mr-2 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="flex flex-row gap-6 pt-4 pb-2 border-b border-zinc-950/10">
+                            <div className="flex items-center text-sm font-medium text-text-zinc-950/90">
+                                <svg className="w-4 h-4 mr-2 text-text-zinc-950/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                                 </svg>
                                 {event.date}
                             </div>
-                            <div className="flex items-center text-sm font-medium text-white/90">
-                                <svg className="w-4 h-4 mr-2 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div className="flex items-center text-sm font-medium text-text-zinc-950/90">
+                                <svg className="w-4 h-4 mr-2 text-text-zinc-950/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
                                 {event.time}
@@ -168,13 +168,13 @@ export default function EventJoinModal({ isOpen, onClose, event, eventImageUrl }
 
                     <form onSubmit={handleSubmit} className="flex flex-col gap-5 grow mt-2">
                         <div>
-                            <label className="block font-koh-santepheap text-sm font-semibold text-white/80 mb-1.5 ml-1">Full Name <span className="text-red-400">*</span></label>
+                            <label className="block font-koh-santepheap text-sm font-semibold text-text-zinc-950/80 mb-1.5 ml-1">Full Name <span className="text-red-400">*</span></label>
                             <input type="text" placeholder="Your Name" required className={inputBaseClasses} value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                             <div className="col-span-full">
-                                <label className="block font-koh-santepheap text-sm font-semibold text-white/80 ml-1">Contact Method <span className="text-white/50 font-normal">(Provide at least one)</span></label>
+                                <label className="block font-koh-santepheap text-sm font-semibold text-text-zinc-950/80 ml-1">Contact Method <span className="text-text-zinc-700 font-normal">(Provide at least one)</span></label>
                             </div>
                             <div>
                                 <input type="text" placeholder="Instagram (@handle)" className={inputBaseClasses} value={instagram} onChange={(e) => setInstagram(e.target.value)} />
@@ -192,7 +192,7 @@ export default function EventJoinModal({ isOpen, onClose, event, eventImageUrl }
                             <button
                                 type="submit"
                                 disabled={!isFormValid() || isSubmitting}
-                                className="relative w-full bg-indigo-600 hover:bg-indigo-500 disabled:bg-white/10 disabled:text-white/30 text-zinc-950 font-bold py-3.5 px-6 rounded-xl transition-all duration-200 shadow-lg cursor-pointer disabled:cursor-not-allowed overflow-hidden"
+                                className="relative w-full bg-transparent hover:bg-white disabled:bg-white/10 disabled:text-zinc-950/30 text-zinc-950 disabled:font-bold font-extrabold py-3.5 px-6 rounded-xl transition-all duration-200 shadow-lg cursor-pointer disabled:cursor-not-allowed overflow-hidden"
                             >
                                 {/* 1. Wrap the text in a relative container with a higher z-index */}
                                 <span className="relative z-20">

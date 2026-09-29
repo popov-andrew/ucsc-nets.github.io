@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState, useRef } from 'react';
+import ShaderBackground from './shaderBackground';
 
 // Desktop & Root Navigation Links[cite: 2]
 const navLinks = [
@@ -14,8 +15,8 @@ const navLinks = [
 
 const mobileBoxes = [
     { href: '/learn', label: 'Lessons', bg: '/images/weaving-lesson.webp' },
-    { href: '/events', label: 'Events', bg: 'https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&q=80&w=800' },
-    { href: '/contact', label: 'Contact', bg: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&q=80&w=800' }
+    { href: '/events', label: 'Events', bg: '/images/community-weaving.webp' },
+    { href: '/contact', label: 'Contact', bg: '/images/secluded-levitation.webp' }
 ];
 
 export default function Navigation() {
@@ -25,6 +26,17 @@ export default function Navigation() {
     const pathname = usePathname();
     const lastScrollY = useRef(0);
     const headerHeight = 96;
+
+    const watercolorUniforms = {
+        u_complexity: 3.7,
+        u_saturation: 1.2,
+        u_twist: 8.0,
+        u_light: 1.0,
+        u_mix: 1.8,
+        u_red: 0.09,
+        u_green: 0.16,
+        u_blue: 0.99,
+    };
 
     const displayedMobileLinks = mobileBoxes
         .filter(link => link.href !== pathname)
@@ -103,7 +115,7 @@ export default function Navigation() {
 
                     const colorMap: Record<string, string> = {
                         "/learn": 'bg-slug text-zinc-950 font-medium min-w-35',
-                        "/events": 'bg-blu text-zinc-950 font-medium',
+                        "/events": 'bg-blu text-neutral-50 font-medium',
                         "/": "bg-black/66 hover:bg-black/75 text-neutral-50 font-medium"
                     };
 
@@ -114,7 +126,7 @@ export default function Navigation() {
                             key={link.href}
                             href={link.href}
                             onClick={() => setIsOpen(false)}
-                            className={`${bgColor} p-2 rounded-lg -mx-1 font-koh-santepheap hover:-translate-y-px transition-all duration-200 max-w-full`}
+                            className={`${bgColor} p-2 rounded-lg -mx-1 font-semibold hover:-translate-y-px transition-all duration-200 max-w-full`}
                         >
                             {link.desktop}
                         </Link>
@@ -151,10 +163,10 @@ export default function Navigation() {
             {/* UNIVERSAL FLOATING TOGGLE BUTTON*/}
             <button
                 className={`rounded-lg fixed p-2 text-black right-6 top-6 bg-neutral-50/70 hover:bg-neutral-50/90 duration-300 backdrop-blur-md border border-black/20 shadow-xl transition-all z-60 ${isModalActive
-                        ? 'opacity-0 invisible pointer-events-none'
-                        : isScrolled
-                            ? 'opacity-100 visible'
-                            : 'max-[855px]:opacity-100 max-[855px]:visible min-[856px]:opacity-0 min-[856px]:invisible min-[856px]:pointer-events-none'
+                    ? 'opacity-0 invisible pointer-events-none'
+                    : isScrolled
+                        ? 'opacity-100 visible'
+                        : 'max-[855px]:opacity-100 max-[855px]:visible min-[856px]:opacity-0 min-[856px]:invisible min-[856px]:pointer-events-none'
                     }`}
                 onClick={() => setIsOpen(!isOpen)}
                 aria-label={isOpen ? "Close Menu" : "Open Menu"}
@@ -180,11 +192,11 @@ export default function Navigation() {
             {/* MOBILE POPUP MENU OVERLAY*/}
             {isOpen && (
                 <div
-                    className='min-[856px]:hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-200 h-dvh w-screen overscroll-contain'
+                    className='min-[856px]:hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/35 backdrop-blur-md animate-in fade-in duration-200 h-dvh w-screen overscroll-contain'
                     onClick={() => setIsOpen(false)}
                 >
                     <div
-                        className='relative bg-transparent border border-white/20 backdrop-blur-xl shadow-2xl rounded-3xl p-6 flex flex-col items-center text-neutral-50 w-full max-w-sm gap-4'
+                        className='relative bg-white/60 border border-white/20 backdrop-blur-xl shadow-2xl rounded-3xl p-6 flex flex-col items-center text-neutral-50 w-full max-w-sm gap-4'
                         onClick={(e) => e.stopPropagation()}
                     >
                         <nav className='flex font-koh-santepheap flex-col items-center gap-4 w-full'>
@@ -209,16 +221,16 @@ export default function Navigation() {
 
                                     {/* {NEW banner} */}
                                     {link.label === "Events" && (
-                                    <div className="absolute top-0 right-0 pointer-events-none">
-                                        <svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://w3.org" role="img" aria-label="Corner Top Right ribbon: NEW" className="w-40 h-40">
-                                            <g>
-                                                <g transform="translate(172.8 67.2) rotate(45)">
-                                                    <rect x="-156" y="-21.6" width="312" height="43.2" fill="#6d89c2" />
-                                                    <text x="0" y="2" text-anchor="middle" dominant-baseline="central" font-family="var(--font-hurricane), cursive" font-weight="400" font-size="40" fill="#ffffff">New</text>
+                                        <div className="absolute top-0 right-0 pointer-events-none">
+                                            <svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://w3.org" role="img" aria-label="Corner Top Right ribbon: NEW" className="w-40 h-40">
+                                                <g>
+                                                    <g transform="translate(172.8 67.2) rotate(45)">
+                                                        <rect x="-156" y="-21.6" width="312" height="43.2" fill="#6d89c2" />
+                                                        <text x="0" y="2" textAnchor="middle" dominantBaseline="central" fontFamily="var(--font-hurricane), cursive" fontWeight="400" fontSize="40" fill="#ffffff">New</text>
+                                                    </g>
                                                 </g>
-                                            </g>
-                                        </svg>
-                                    </div>
+                                            </svg>
+                                        </div>
                                     )}
                                 </Link>
                             ))}
@@ -232,16 +244,26 @@ export default function Navigation() {
                             <Link
                                 href="/"
                                 onClick={() => setIsOpen(false)}
-                                className="w-full flex flex-row items-center justify-center gap-3 py-4 mt-2 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/10 transition-all shadow-inner text-white"
+                                className="relative w-full flex flex-row items-center justify-center gap-3 py-4 mt-2 rounded-2xl bg-white/10 hover:bg-white backdrop-blur-md border border-white/10 transition-all shadow-inner text-white"
                             >
+
+                                <div className="absolute inset-0 w-full h-full bg-white/10 rounded-xl blur-xs z-10">
+                                    <ShaderBackground
+                                        shaderName="watercolor"
+                                        uniforms={watercolorUniforms}
+                                    />
+                                </div>
+
                                 <div className="w-8 h-8 bg-black/40 rounded-full flex items-center justify-center border border-white/10">
                                     <img
                                         src={"https://ucsctree.net/logo.svg"}
                                         alt="Company Logo"
-                                        className="w-8 h-8 rounded-full object-cover absolute"
+                                        className="w-8 h-8 rounded-full object-cover absolute z-30"
                                     />
                                 </div>
-                                <span className="text-lg font-semibold font-koh-santepheap tracking-wide text-shadow-sm">Treenets at UCSC</span>
+
+                                
+                                <span className="text-zinc-950 text-lg font-semibold font-koh-santepheap tracking-wide text-shadow-sm z-30">Treenets at UCSC</span>
                             </Link>
                         )}
                     </div>
